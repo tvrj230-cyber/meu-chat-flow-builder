@@ -1,20 +1,35 @@
 import React from 'react';
-import { Handle, Position } from 'reactflow';
-import { GitBranch } from 'lucide-react';
+import { Handle, Position, useReactFlow } from 'reactflow';
+import { GitBranch, Trash2 } from 'lucide-react';
 import './Nodes.css';
 
-export default function ConditionNode({ data, isConnectable }) {
+export default function ConditionNode({ id, data, isConnectable }) {
+  const { setNodes, setEdges } = useReactFlow();
+
+  const onDelete = () => {
+    setNodes((nodes) => nodes.filter(n => n.id !== id));
+    setEdges((edges) => edges.filter(e => e.source !== id && e.target !== id));
+  };
+
+  const onChange = (evt) => {
+    setNodes((nds) => nds.map((n) => {
+      if (n.id === id) n.data = { ...n.data, rule: evt.target.value };
+      return n;
+    }));
+  };
+
   return (
     <div className="custom-node node-condition">
       <div className="node-header">
         <GitBranch size={18} />
-        {data.label || 'Condição'}
+        <span style={{ flexGrow: 1 }}>{data.label || 'Condição'}</span>
+        <button className="del-btn nodrag" onClick={onDelete}><Trash2 size={16} /></button>
       </div>
       <div className="node-body">
         <label>Validar por</label>
-        <select className="nodrag" defaultValue="horario">
+        <select className="nodrag" value={data.rule || 'horario'} onChange={onChange}>
            <option value="horario">Horário de Atendimento</option>
-           <option value="variavel">Resposta Exata do Usuário</option>
+           <option value="variavel">Resposta do Usuário</option>
         </select>
         
         <div style={{ display: 'flex', flexDirection: 'column', gap: '20px', marginTop: '10px' }}>

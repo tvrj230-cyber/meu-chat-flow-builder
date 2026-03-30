@@ -106,3 +106,54 @@
   border: 1px solid var(--panel-border);
   font-size: 0.85rem;
 }
+
+/* Utilitários dos botões interativos (Lixeira, Add Opção) */
+.del-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.del-btn:hover {
+  color: #ef4444;
+  background: rgba(239, 68, 68, 0.1);
+}
+
+.remove-opt-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-opt-btn:hover {
+  color: #ef4444;
+}
+
+.add-btn {
+  background: transparent;
+  border: 1px dashed var(--panel-border);
+  color: var(--text-secondary);
+  padding: 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.8rem;
+  margin-top: 4px;
+  transition: all 0.2s;
+}
+
+.add-btn:hover {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
