@@ -1,0 +1,5 @@
+/* Apenas container styles extras do App */
+.dndflow {
+  display: flex;
+  height: 100vh;
+}

@@ -1,0 +1,108 @@
+.custom-node {
+  background: var(--panel-bg);
+  border-radius: 12px;
+  padding: 0;
+  min-width: 260px;
+  border: 1px solid var(--panel-border);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  font-family: inherit;
+  color: var(--text-primary);
+  overflow: hidden;
+  transition: box-shadow 0.2s;
+}
+
+.custom-node:hover {
+  box-shadow: 0 12px 32px rgba(0,0,0,0.6);
+}
+
+/* Headers de cada node */
+.node-header {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-bottom: 1px solid var(--panel-border);
+}
+
+.node-message .node-header { background: rgba(59, 130, 246, 0.1); border-top: 4px solid var(--node-color-message); }
+.node-message svg { color: var(--node-color-message); }
+
+.node-menu .node-header { background: rgba(139, 92, 246, 0.1); border-top: 4px solid var(--node-color-menu); }
+.node-menu svg { color: var(--node-color-menu); }
+
+.node-condition .node-header { background: rgba(234, 179, 8, 0.1); border-top: 4px solid var(--node-color-condition); }
+.node-condition svg { color: var(--node-color-condition); }
+
+.node-action .node-header { background: rgba(16, 185, 129, 0.1); border-top: 4px solid var(--node-color-action); }
+.node-action svg { color: var(--node-color-action); }
+
+.node-body {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.node-body label {
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-weight: 700;
+}
+
+.node-body input, .node-body textarea, .node-body select {
+  width: 100%;
+  background: var(--node-bg);
+  border: 1px solid var(--panel-border);
+  color: var(--text-primary);
+  padding: 10px 12px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  outline: none;
+  font-family: inherit;
+  transition: border-color 0.2s;
+}
+
+.node-body input:focus, .node-body textarea:focus, .node-body select:focus {
+  border-color: var(--accent-color);
+}
+
+.node-body textarea {
+  resize: vertical;
+  min-height: 60px;
+}
+
+/* Handles do React Flow */
+.custom-handle {
+  width: 12px !important;
+  height: 12px !important;
+  background: var(--panel-bg) !important;
+  border: 3px solid var(--accent-color) !important;
+  transition: all 0.2s;
+}
+
+.custom-handle:hover {
+  background: var(--accent-color) !important;
+  box-shadow: 0 0 10px var(--accent-glow);
+  transform: scale(1.2);
+}
+
+/* Menu items extras do UAZAPI */
+.menu-options-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.menu-option-item {
+  display: flex;
+  align-items: center;
+  background: var(--node-bg);
+  padding: 8px 10px;
+  border-radius: 6px;
+  border: 1px solid var(--panel-border);
+  font-size: 0.85rem;
+}

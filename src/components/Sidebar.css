@@ -1,0 +1,99 @@
+.sidebar {
+  width: 280px;
+  background: var(--panel-bg);
+  border-right: 1px solid var(--panel-border);
+  display: flex;
+  flex-direction: column;
+  padding: 24px 16px;
+  box-shadow: 4px 0 15px rgba(0,0,0,0.4);
+  z-index: 10;
+}
+
+.sidebar-header {
+  margin-bottom: 32px;
+}
+
+.sidebar-header h2 {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 6px;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-header p {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.nodes-container {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  flex-grow: 1;
+}
+
+.dndnode {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  border-radius: 8px;
+  background: var(--node-bg);
+  border: 1px solid var(--panel-border);
+  cursor: grab;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text-primary);
+  transition: all 0.2s ease;
+}
+
+.dndnode:active {
+  cursor: grabbing;
+}
+
+.dndnode:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  border-color: var(--accent-color);
+}
+
+.dndnode.message-node { border-left: 4px solid var(--node-color-message); }
+.dndnode.menu-node { border-left: 4px solid var(--node-color-menu); }
+.dndnode.condition-node { border-left: 4px solid var(--node-color-condition); }
+.dndnode.action-node { border-left: 4px solid var(--node-color-action); }
+
+.dndnode.message-node svg { color: var(--node-color-message); }
+.dndnode.menu-node svg { color: var(--node-color-menu); }
+.dndnode.condition-node svg { color: var(--node-color-condition); }
+.dndnode.action-node svg { color: var(--node-color-action); }
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 24px;
+  border-top: 1px solid var(--panel-border);
+}
+
+.save-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 14px;
+  background: var(--accent-color);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+
+.save-btn:hover {
+  background: var(--accent-hover);
+  box-shadow: 0 0 16px var(--accent-glow);
+  transform: translateY(-2px);
+}

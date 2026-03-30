@@ -1,0 +1,62 @@
+:root {
+  --bg-color: #0d0f12;
+  --panel-bg: #1a1d24;
+  --panel-border: #2a2d36;
+  --text-primary: #f0f0f0;
+  --text-secondary: #9aa0a6;
+  --accent-color: #f97316; /* Laranja vibrante */
+  --accent-hover: #ea580c;
+  --accent-glow: rgba(249, 115, 22, 0.4);
+  --node-bg: #222630;
+  
+  --node-color-message: #3b82f6; /* Azul */
+  --node-color-menu: #8b5cf6; /* Roxo */
+  --node-color-condition: #eab308; /* Amarelo */
+  --node-color-action: #10b981; /* Verde */
+}
+
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-primary);
+  overflow: hidden;
+}
+
+h1, h2, h3, h4, p {
+  margin: 0;
+}
+
+/* React Flow custom styles */
+.react-flow__background {
+  background-color: var(--bg-color);
+}
+
+.react-flow__controls-button {
+  background: var(--panel-bg) !important;
+  fill: var(--text-primary) !important;
+  border-bottom: 1px solid var(--panel-border) !important;
+}
+
+.react-flow__controls-button:hover {
+  background: var(--panel-border) !important;
+}
+
+/* App Layout */
+.app-container {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  flex-direction: column;
+}
+
+.dndflow {
+  display: flex;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
