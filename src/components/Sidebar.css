@@ -62,11 +62,15 @@
 .dndnode.menu-node { border-left: 4px solid var(--node-color-menu); }
 .dndnode.condition-node { border-left: 4px solid var(--node-color-condition); }
 .dndnode.action-node { border-left: 4px solid var(--node-color-action); }
+.dndnode.delay-node { border-left: 4px solid #38bdf8; }
+.dndnode.tag-node { border-left: 4px solid #f472b6; }
 
 .dndnode.message-node svg { color: var(--node-color-message); }
 .dndnode.menu-node svg { color: var(--node-color-menu); }
 .dndnode.condition-node svg { color: var(--node-color-condition); }
 .dndnode.action-node svg { color: var(--node-color-action); }
+.dndnode.delay-node svg { color: #38bdf8; }
+.dndnode.tag-node svg { color: #f472b6; }
 
 .sidebar-footer {
   margin-top: auto;

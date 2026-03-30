@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, List, GitBranch, Zap, Save } from 'lucide-react';
+import { MessageSquare, List, GitBranch, Zap, Save, Clock, Tag as TagIcon } from 'lucide-react';
 import './Sidebar.css';
 
 export default function Sidebar({ exportFlow }) {
@@ -28,12 +28,22 @@ export default function Sidebar({ exportFlow }) {
 
         <div className="dndnode condition-node" onDragStart={(event) => onDragStart(event, 'conditionNode')} draggable>
           <GitBranch size={18} />
-          <span>Condição</span>
+          <span>Horário/Condição</span>
+        </div>
+
+        <div className="dndnode delay-node" onDragStart={(event) => onDragStart(event, 'delayNode')} draggable>
+          <Clock size={18} />
+          <span>Aguardar (Timeout)</span>
+        </div>
+
+        <div className="dndnode tag-node" onDragStart={(event) => onDragStart(event, 'tagNode')} draggable>
+          <TagIcon size={18} />
+          <span>Atribuir Tag</span>
         </div>
 
         <div className="dndnode action-node" onDragStart={(event) => onDragStart(event, 'actionNode')} draggable>
           <Zap size={18} />
-          <span>Ação (Supabase)</span>
+          <span>Ação / Transferir</span>
         </div>
       </div>
 

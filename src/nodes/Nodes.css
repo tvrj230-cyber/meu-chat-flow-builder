@@ -38,6 +38,12 @@
 .node-action .node-header { background: rgba(16, 185, 129, 0.1); border-top: 4px solid var(--node-color-action); }
 .node-action svg { color: var(--node-color-action); }
 
+.node-delay .node-header { background: rgba(56, 189, 248, 0.1); border-top: 4px solid #38bdf8; }
+.node-delay svg { color: #38bdf8; }
+
+.node-tag .node-header { background: rgba(244, 114, 182, 0.1); border-top: 4px solid #f472b6; }
+.node-tag svg { color: #f472b6; }
+
 .node-body {
   padding: 16px;
   display: flex;

@@ -14,6 +14,8 @@ import MessageNode from './nodes/MessageNode';
 import MenuNode from './nodes/MenuNode';
 import ConditionNode from './nodes/ConditionNode';
 import ActionNode from './nodes/ActionNode';
+import DelayNode from './nodes/DelayNode';
+import TagNode from './nodes/TagNode';
 
 import './App.css';
 
@@ -22,6 +24,8 @@ const nodeTypes = {
   menuNode: MenuNode,
   conditionNode: ConditionNode,
   actionNode: ActionNode,
+  delayNode: DelayNode,
+  tagNode: TagNode,
 };
 
 const initialNodes = [
@@ -64,7 +68,13 @@ function Flow() {
         id: getId(),
         type,
         position,
-        data: { label: type === 'menuNode' ? 'Menu Interativo' : type === 'conditionNode' ? 'Condição' : type === 'actionNode' ? 'Supabase Action' : 'Mensagem' },
+        data: { 
+          label: type === 'menuNode' ? 'Menu Interativo' : 
+                 type === 'conditionNode' ? 'Horários' : 
+                 type === 'actionNode' ? 'Supabase Action' : 
+                 type === 'delayNode' ? 'Aguardar / Timeout' :
+                 type === 'tagNode' ? 'Atribuir Tag' : 'Mensagem' 
+        },
       };
 
       setNodes((nds) => nds.concat(newNode));
