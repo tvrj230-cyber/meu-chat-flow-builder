@@ -49,7 +49,7 @@ export default function Sidebar({ exportFlow }) {
 
       <div className="sidebar-footer">
          <button className="save-btn" onClick={exportFlow}>
-            <Save size={18} /> Exportar JSON
+            <Save size={18} /> Publicar no Robô
          </button>
       </div>
     </aside>

@@ -1,4 +1,9 @@
 import React, { useState, useCallback, useRef } from 'react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL || 'https://fake.supabase.co';
+const supabaseKey = import.meta.env.VITE_SUPABASE_ANON_KEY || 'fake-key';
+const supabase = createClient(supabaseUrl, supabaseKey);
 import ReactFlow, {
   ReactFlowProvider,
   addEdge,
@@ -82,16 +87,21 @@ function Flow() {
     [reactFlowInstance, setNodes]
   );
 
-  const exportFlow = () => {
+  const exportFlow = async () => {
     if (!reactFlowInstance) return;
     const flow = reactFlowInstance.toObject();
-    const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(flow, null, 2));
-    const downloadAnchorNode = document.createElement('a');
-    downloadAnchorNode.setAttribute("href", dataStr);
-    downloadAnchorNode.setAttribute("download", "flow-v1.json");
-    document.body.appendChild(downloadAnchorNode);
-    downloadAnchorNode.click();
-    downloadAnchorNode.remove();
+    
+    try {
+      const { error } = await supabase
+        .from('flows')
+        .upsert({ id: 'default', flow_data: flow });
+        
+      if (error) throw error;
+      alert('✅ Mapa Mental salvo e publicado no robô com sucesso!');
+    } catch (err) {
+      console.error('Erro ao salvar no Supabase:', err);
+      alert('❌ Erro ao salvar o mapa. O banco de dados ou as credenciais podem estar incorretos.');
+    }
   };
 
   return (
