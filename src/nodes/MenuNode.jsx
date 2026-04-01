@@ -19,6 +19,13 @@ export default function MenuNode({ id, data, isConnectable }) {
     }));
   };
 
+  const onTimeoutChange = (evt) => {
+    setNodes((nds) => nds.map((n) => {
+      if (n.id === id) n.data = { ...n.data, timeoutHours: evt.target.value };
+      return n;
+    }));
+  };
+
   const addOption = () => {
     const newOptions = [...options, `Opção ${options.length + 1}`];
     setNodes(nds => nds.map(n => {
@@ -87,8 +94,29 @@ export default function MenuNode({ id, data, isConnectable }) {
         <button className="nodrag add-btn" onClick={addOption}>
            + Adicionar Opção
         </button>
+
+        <div style={{ marginTop: '15px', borderTop: '1px solid #e2e8f0', paddingTop: '10px' }}>
+          <label style={{ color: '#ef4444' }}>Aguardar sem resposta (Horas)</label>
+          <input 
+            type="number" 
+            value={data.timeoutHours || 1} 
+            onChange={onTimeoutChange}
+            className="nodrag"
+            style={{ width: '100%', padding: '4px', marginTop: '4px', borderColor: '#ef4444' }}
+            min="1"
+          />
+        </div>
       </div>
       <Handle type="target" position={Position.Left} isConnectable={isConnectable} className="custom-handle" />
+      {/* O Handle Vermelho de Remarketing ficará na base do nó */}
+      <Handle 
+        type="source" 
+        position={Position.Bottom} 
+        id="timeout" 
+        title="Se o cliente parar neste bloco e o tempo zerar, a flecha vermelha sai por aqui!"
+        isConnectable={isConnectable} 
+        style={{ background: '#ef4444', width: '14px', height: '14px', border: '2px solid white' }}
+      />
     </div>
   );
 }
