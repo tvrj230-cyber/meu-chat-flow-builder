@@ -21,6 +21,7 @@ import ConditionNode from './nodes/ConditionNode';
 import ActionNode from './nodes/ActionNode';
 import DelayNode from './nodes/DelayNode';
 import TagNode from './nodes/TagNode';
+import ImageNode from './nodes/ImageNode';
 
 import './App.css';
 
@@ -31,6 +32,7 @@ const nodeTypes = {
   actionNode: ActionNode,
   delayNode: DelayNode,
   tagNode: TagNode,
+  imageNode: ImageNode,
 };
 
 const initialNodes = [
@@ -50,6 +52,28 @@ function Flow() {
   const [nodes, setNodes, onNodesChange] = useNodesState(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState([]);
   const [reactFlowInstance, setReactFlowInstance] = useState(null);
+
+  // NOVIDADE: Quando abre a tela, carrega do Supabase
+  React.useEffect(() => {
+    const fetchFlow = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('flows')
+          .select('flow_data')
+          .eq('id', 'default')
+          .single();
+          
+        if (data && data.flow_data) {
+          if (data.flow_data.nodes) setNodes(data.flow_data.nodes);
+          if (data.flow_data.edges) setEdges(data.flow_data.edges);
+          console.log("Mapa mental carregado com sucesso do Banco V2.0!");
+        }
+      } catch (err) {
+        console.warn("Nenhum mapa salvo encontrado, iniciando do zero.");
+      }
+    };
+    fetchFlow();
+  }, [setNodes, setEdges]);
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
@@ -78,6 +102,7 @@ function Flow() {
                  type === 'conditionNode' ? 'Horários' : 
                  type === 'actionNode' ? 'Supabase Action' : 
                  type === 'delayNode' ? 'Aguardar / Timeout' :
+                 type === 'imageNode' ? 'Mídia / Imagem' :
                  type === 'tagNode' ? 'Atribuir Tag' : 'Mensagem' 
         },
       };
