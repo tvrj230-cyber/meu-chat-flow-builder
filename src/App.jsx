@@ -22,6 +22,7 @@ import ActionNode from './nodes/ActionNode';
 import DelayNode from './nodes/DelayNode';
 import TagNode from './nodes/TagNode';
 import ImageNode from './nodes/ImageNode';
+import CaptureNode from './nodes/CaptureNode';
 
 import './App.css';
 
@@ -33,6 +34,7 @@ const nodeTypes = {
   delayNode: DelayNode,
   tagNode: TagNode,
   imageNode: ImageNode,
+  captureNode: CaptureNode,
 };
 
 const initialNodes = [
@@ -103,6 +105,7 @@ function Flow() {
                  type === 'actionNode' ? 'Supabase Action' : 
                  type === 'delayNode' ? 'Aguardar / Timeout' :
                  type === 'imageNode' ? 'Mídia / Imagem' :
+                 type === 'captureNode' ? 'Capturar Dados' :
                  type === 'tagNode' ? 'Atribuir Tag' : 'Mensagem' 
         },
       };
