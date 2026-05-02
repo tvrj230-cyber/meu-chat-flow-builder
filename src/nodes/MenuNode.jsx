@@ -113,9 +113,8 @@ export default function MenuNode({ id, data, isConnectable }) {
         type="source" 
         position={Position.Bottom} 
         id="timeout" 
-        title="Se o cliente parar neste bloco e o tempo zerar, a flecha vermelha sai por aqui!"
         isConnectable={isConnectable} 
-        style={{ background: '#ef4444', width: '14px', height: '14px', border: '2px solid white' }}
+        style={{ background: '#ef4444', width: '12px', height: '12px', border: '2px solid white' }}
       />
     </div>
   );

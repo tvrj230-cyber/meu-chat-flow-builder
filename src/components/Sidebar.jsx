@@ -1,5 +1,5 @@
 import React from 'react';
-import { MessageSquare, List, GitBranch, Zap, Save, Clock, Tag as TagIcon, Image as ImageIcon, Database } from 'lucide-react';
+import { MessageSquare, List, GitBranch, Zap, Save, Clock, Tag as TagIcon, Image as ImageIcon } from 'lucide-react';
 import './Sidebar.css';
 
 export default function Sidebar({ exportFlow }) {
@@ -24,11 +24,6 @@ export default function Sidebar({ exportFlow }) {
         <div className="dndnode image-node" onDragStart={(event) => onDragStart(event, 'imageNode')} draggable style={{ borderColor: '#22c55e', color: '#22c55e' }}>
           <ImageIcon size={18} />
           <span>Mídia (Imagem)</span>
-        </div>
-
-        <div className="dndnode capture-node" onDragStart={(event) => onDragStart(event, 'captureNode')} draggable style={{ borderColor: '#8b5cf6', color: '#8b5cf6' }}>
-          <Database size={18} />
-          <span>Capturar E-mail</span>
         </div>
 
         <div className="dndnode menu-node" onDragStart={(event) => onDragStart(event, 'menuNode')} draggable>

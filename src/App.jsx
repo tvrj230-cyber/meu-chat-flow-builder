@@ -22,7 +22,6 @@ import ActionNode from './nodes/ActionNode';
 import DelayNode from './nodes/DelayNode';
 import TagNode from './nodes/TagNode';
 import ImageNode from './nodes/ImageNode';
-import CaptureNode from './nodes/CaptureNode';
 
 import './App.css';
 
@@ -34,7 +33,6 @@ const nodeTypes = {
   delayNode: DelayNode,
   tagNode: TagNode,
   imageNode: ImageNode,
-  captureNode: CaptureNode,
 };
 
 const initialNodes = [
@@ -46,8 +44,7 @@ const initialNodes = [
   },
 ];
 
-let id = 0;
-const getId = () => `dndnode_${id++}`;
+const getId = () => `dndnode_${Date.now()}_${Math.floor(Math.random() * 10000)}`;
 
 function Flow() {
   const reactFlowWrapper = useRef(null);
@@ -79,6 +76,11 @@ function Flow() {
 
   const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
 
+  const onEdgeDoubleClick = useCallback((event, edge) => {
+    event.stopPropagation();
+    setEdges((eds) => eds.filter((e) => e.id !== edge.id));
+  }, [setEdges]);
+
   const onDragOver = useCallback((event) => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
@@ -105,7 +107,6 @@ function Flow() {
                  type === 'actionNode' ? 'Supabase Action' : 
                  type === 'delayNode' ? 'Aguardar / Timeout' :
                  type === 'imageNode' ? 'Mídia / Imagem' :
-                 type === 'captureNode' ? 'Capturar Dados' :
                  type === 'tagNode' ? 'Atribuir Tag' : 'Mensagem' 
         },
       };
@@ -142,6 +143,7 @@ function Flow() {
           onNodesChange={onNodesChange}
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
+          onEdgeDoubleClick={onEdgeDoubleClick}
           onInit={setReactFlowInstance}
           onDrop={onDrop}
           onDragOver={onDragOver}

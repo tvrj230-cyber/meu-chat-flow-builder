@@ -63,9 +63,8 @@ export default function MessageNode({ id, data, isConnectable }) {
         type="source" 
         position={Position.Bottom} 
         id="timeout" 
-        title="Saída de Remarketing de Abandono."
         isConnectable={isConnectable} 
-        style={{ background: '#ef4444', width: '14px', height: '14px', border: '2px solid white' }}
+        style={{ background: '#ef4444', width: '12px', height: '12px', border: '2px solid white' }}
       />
     </div>
   );
