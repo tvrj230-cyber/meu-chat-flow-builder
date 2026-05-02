@@ -22,6 +22,7 @@ import ActionNode from './nodes/ActionNode';
 import DelayNode from './nodes/DelayNode';
 import TagNode from './nodes/TagNode';
 import ImageNode from './nodes/ImageNode';
+import CustomEdge from './components/CustomEdge';
 
 import './App.css';
 
@@ -33,6 +34,10 @@ const nodeTypes = {
   delayNode: DelayNode,
   tagNode: TagNode,
   imageNode: ImageNode,
+};
+
+const edgeTypes = {
+  custom: CustomEdge,
 };
 
 const initialNodes = [
@@ -64,7 +69,10 @@ function Flow() {
           
         if (data && data.flow_data) {
           if (data.flow_data.nodes) setNodes(data.flow_data.nodes);
-          if (data.flow_data.edges) setEdges(data.flow_data.edges);
+          if (data.flow_data.edges) {
+            const edgesComBotao = data.flow_data.edges.map(e => ({ ...e, type: 'custom' }));
+            setEdges(edgesComBotao);
+          }
           console.log("Mapa mental carregado com sucesso do Banco V2.0!");
         }
       } catch (err) {
@@ -74,7 +82,7 @@ function Flow() {
     fetchFlow();
   }, [setNodes, setEdges]);
 
-  const onConnect = useCallback((params) => setEdges((eds) => addEdge(params, eds)), [setEdges]);
+  const onConnect = useCallback((params) => setEdges((eds) => addEdge({ ...params, type: 'custom' }, eds)), [setEdges]);
 
   const onEdgeDoubleClick = useCallback((event, edge) => {
     event.stopPropagation();
@@ -148,6 +156,7 @@ function Flow() {
           onDrop={onDrop}
           onDragOver={onDragOver}
           nodeTypes={nodeTypes}
+          edgeTypes={edgeTypes}
           fitView
         >
           <Controls />
